@@ -22,4 +22,8 @@ describe('MenuComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('title should be', () => {
+    expect(component).toBeTruthy();
+  });
 });
