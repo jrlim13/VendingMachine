@@ -3,14 +3,6 @@ img {
   height: 200px;
 }
 
-/*@media (min-width: 1400px) {
-  .container {
-    width: 900px;
-    margin:0;
-    display:inline;
-  }
-}
-*/
 .flex-gap {
     gap:1rem;
 }
