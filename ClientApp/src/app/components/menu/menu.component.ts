@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
   constructor(private canService : CanService) { }
 
   cans: any[] = [];
-  count: Number = 0;
+  count: number = 0;
   selectedCan: any;
 
   ngOnInit(): void {

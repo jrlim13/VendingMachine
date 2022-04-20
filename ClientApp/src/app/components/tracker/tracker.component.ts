@@ -9,10 +9,13 @@ export class TrackerComponent implements OnInit {
 
   constructor() { }
 
-  @Input() count: Number = 0;
+  @Input() count: number = 0;
+  @Input() earnedMoney: number = 0;
+  @Input() ccPaymentsMade: number = 0;
 
   ngOnInit(): void {
     console.log(this.count);
+    console.log(this.earnedMoney);
   }
 
 }

@@ -11,10 +11,12 @@ export class CartComponent implements OnInit, OnChanges {
   constructor(private modalService: NgbModal) { }
 
   @Input() selectedCan: any;
-  @Input() count: Number = 0;
+  @Input() count: number = 0;
   @Output() selectedCanChange = new EventEmitter();
 
   change: number = 0;
+  earnedMoney: number = 0;
+  ccPaymentsMade: number = 0;
 
   ngOnInit(): void {
     console.log(this.count);
@@ -41,6 +43,8 @@ export class CartComponent implements OnInit, OnChanges {
     this.change = Math.round((payment - this.selectedCan.price) * 100) /100;
     this.selectedCan.stock = this.selectedCan.stock - 1;
     this.selectedCanChange.emit(this.selectedCan);
+    this.earnedMoney += this.selectedCan.price;
+    this.count -= 1;
 
     console.log(this.change);
     this.modalService.dismissAll();
@@ -49,6 +53,7 @@ export class CartComponent implements OnInit, OnChanges {
 
   payCard() {
     this.selectedCan.stock = this.selectedCan.stock - 1;
+    this.ccPaymentsMade += this.selectedCan.price;
     this.modalService.dismissAll();
     alert("Payment is processed. Thank you for you purchase. Please get your can. :)");
   }
