@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tracker',
@@ -9,7 +9,10 @@ export class TrackerComponent implements OnInit {
 
   constructor() { }
 
+  @Input() count: Number = 0;
+
   ngOnInit(): void {
+    console.log(this.count);
   }
 
 }

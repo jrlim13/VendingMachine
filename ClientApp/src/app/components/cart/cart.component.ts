@@ -74,11 +74,13 @@ export class CartComponent implements OnInit, OnChanges {
   constructor(private modalService: NgbModal) { }
 
   @Input() selectedCan: any;
+  @Input() count: Number = 0;
   @Output() selectedCanChange = new EventEmitter();
 
   change: number = 0;
 
   ngOnInit(): void {
+    console.log(this.count);
   }
 
   ngOnChanges(changes: SimpleChanges) {

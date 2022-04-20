@@ -5,6 +5,10 @@ img {
 .cart-size {
     width:400px;
 }
+
+.inner-cart-size {
+    height: 350px;
+}
 /*.input-group {
     position: relative;
 }

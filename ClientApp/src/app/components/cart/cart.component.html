@@ -32,23 +32,26 @@
   </div>
 </ng-template>
 
-<div class="cart-size sticky-top p-5 bg-white float-endh">
-  <h3>Cart</h3>
-  <div *ngIf="selectedCan" class="text-center">
-    <div class="my-3">
-      <div class="d-flex justify-content-between">
-        <img src="./assets/images/{{selectedCan.imgName}}" />
-        <p class="">{{selectedCan.name}}</p>
-        <button (click)="removeSelectedCan()" class="btn btn-danger">Remove</button>
+<div class="cart-size sticky-top float-endh">
+  <div class="inner-cart-size p-5 bg-white">
+    <h3>Cart</h3>
+    <div *ngIf="selectedCan" class="text-center">
+      <div class="my-3">
+        <div class="d-flex justify-content-between">
+          <img src="./assets/images/{{selectedCan.imgName}}" />
+          <p class="">{{selectedCan.name}}</p>
+          <button (click)="removeSelectedCan()" class="btn btn-danger">Remove</button>
+        </div>
+      </div>
+      <p>Total: A${{selectedCan.price}}</p>
+      <div class="d-flex flex-wrap">
+        <button (click)="open(contentCash)" class="btn btn-primary text-uppercase w-100 mb-2">Pay By Cash</button>
+        <button (click)="open(contentCard)" class="btn btn-primary text-uppercase w-100">Pay By Card</button>
       </div>
     </div>
-    <p>Total: A${{selectedCan.price}}</p>
-    <div class="d-flex flex-wrap">
-      <button (click)="open(contentCash)" class="btn btn-primary text-uppercase w-100 mb-2">Pay By Cash</button>
-      <button (click)="open(contentCard)" class="btn btn-primary text-uppercase w-100">Pay By Card</button>
+    <div class="my-3" *ngIf="!selectedCan">
+      <p>No can selected. Select a can!</p>
     </div>
   </div>
-  <div class="my-3" *ngIf="!selectedCan">
-    <p>No can selected. Select a can!</p>
-  </div>
+  <app-tracker [count]="count"></app-tracker>
 </div>
