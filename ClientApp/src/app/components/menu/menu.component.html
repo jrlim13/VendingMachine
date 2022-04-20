@@ -1,0 +1,17 @@
+<!--<div class="flex-basis-3 d-flex flex-wrap justify-content-evenly">-->
+<div class="flex-gap d-flex">
+  <div class="container">
+    <div class="row justify-content-between g-3 mb-3">
+      <div *ngFor="let can of cans" class="col-xxl-3 mx-1 bg-white text-center p-3 rounded shadow-sm" id="can-{{can.id}}">
+        <img src="./assets/images/{{can.imgName}}" />
+        <p class="fs-5 mt-3">{{can.name}}</p>
+        <p>Stock left: {{can.stock}}</p>
+        <button (click)="select(can)" class="btn btn-primary text-uppercase">Select</button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-cart [(selectedCan)]=selectedCan></app-cart>
+    <app-tracker></app-tracker>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<ng-template #contentCash let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Pay By Cash</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="amount">Payment Amount</label>
+        <div class="input-group">
+          <span class="currency-code">A$</span>
+          <input type="number" min="{{selectedCan.price}}" step="0.01" id="paymentAmount" dirname="paymentAmount" class="form-control text-currency" placeholder="{{selectedCan.price}}" name="pa" #paymentAmount required>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="payCash(paymentAmount.value)">Pay</button>
+  </div>
+</ng-template>
+
+<ng-template #contentCard let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Pay By Cash</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Please tap card.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="payCard()">Tap</button>
+  </div>
+</ng-template>
+
+<div class="cart-size sticky-top p-5 bg-white float-endh">
+  <h3>Cart</h3>
+  <div *ngIf="selectedCan" class="text-center">
+    <div class="my-3">
+      <div class="d-flex justify-content-between">
+        <img src="./assets/images/{{selectedCan.imgName}}" />
+        <p class="">{{selectedCan.name}}</p>
+        <button (click)="removeSelectedCan()" class="btn btn-danger">Remove</button>
+      </div>
+    </div>
+    <p>Total: A${{selectedCan.price}}</p>
+    <div class="d-flex flex-wrap">
+      <button (click)="open(contentCash)" class="btn btn-primary text-uppercase w-100 mb-2">Pay By Cash</button>
+      <button (click)="open(contentCard)" class="btn btn-primary text-uppercase w-100">Pay By Card</button>
+    </div>
+  </div>
+  <div class="my-3" *ngIf="!selectedCan">
+    <p>No can selected. Select a can!</p>
+  </div>
+</div>
