@@ -1,13 +1,13 @@
 img {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
 }
 .cart-size {
-    width:400px;
+    width:300px;
 }
 
 .inner-cart-size {
-    height: 350px;
+    height: 380px;
 }
 /*.input-group {
     position: relative;
