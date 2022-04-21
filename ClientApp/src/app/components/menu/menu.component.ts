@@ -37,7 +37,7 @@ export class MenuComponent implements OnInit {
 
   restock(amount: string) {
     this.canToRestock.stock += Number(amount);
-    console.log(this.canToRestock.stock, amount);
+    this.count += Number(amount);
     this.modalService.dismissAll();
   }
 }
