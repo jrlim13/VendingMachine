@@ -8,7 +8,7 @@
       <div class="mb-3">
         <label for="amount">Amount</label>
         <div class="input-group">
-          <input type="number" min="1" id="paymentAmount" class="form-control text-currency" placeholder="1" name="restock" value="amount" #amount required>
+          <input type="number" min="1" id="paymentAmount" class="form-control text-currency" placeholder="0" name="restock" value="amount" #amount required>
         </div>
       </div>
     </form>
@@ -21,18 +21,20 @@
 <div class="flex-gap d-flex">
   <div class="container">
     <div class="row justify-content-between g-3 mb-3">
-      <div *ngFor="let can of cans" class="col-xxl-3 mx-1 bg-white text-center p-3 rounded shadow-sm" id="can-{{can.id}}">
-        <img src="./assets/images/{{can.imgName}}" />
-        <p class="fs-5 mt-3" id="can-{{can.id}}-name" title="{{can.name}}">{{can.name}}</p>
-        <p>Stock left: {{can.stock}}</p>
-        <div class="d-grid gap-2">
-          <button (click)="select(can)" class="btn btn-primary text-uppercase">Select</button>
-          <button (click)="openRestock(can, modalRestock)" class="btn btn-primary text-uppercase">Restock</button>
+      <div *ngFor="let can of cans" class="col-xxl-3 mx-1 bg-white text-center p-4 rounded shadow-sm align-self-end" id="can-{{can.id}}">
+        <div class="d-flex flex-wrap flex-column">
+          <img src="./assets/images/{{can.imgName}}" />
+          <p class="fs-5 mt-3" id="can-{{can.id}}-name" title="{{can.name}}">{{can.name}}</p>
+          <p>Stock left: {{can.stock}}</p>
+          <div class="d-flex flex-column w-100 gap-2 mt-auto">
+            <button (click)="select(can)" class="btn btn-primary text-uppercase">Select</button>
+            <button (click)="openRestock(can, modalRestock)" class="btn btn-primary text-uppercase">Restock</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div>
-    <app-cart [count]="count" [(selectedCan)]="selectedCan" ></app-cart>
+    <app-cart [(selectedCan)]="selectedCan" [(count)]="count" [(earnedMoney)]="earnedMoney" [(ccPaymentsMade)]="ccPaymentsMade"  ></app-cart>
   </div>
 </div>

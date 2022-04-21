@@ -12,14 +12,18 @@ export class CartComponent implements OnInit, OnChanges {
 
   @Input() selectedCan: any;
   @Input() count: number = 0;
+  @Input() earnedMoney: number = 0;
+  @Input() ccPaymentsMade: number = 0;
+
   @Output() selectedCanChange = new EventEmitter();
 
+  @Output() countChange = new EventEmitter<number>();
+  @Output() earnedMoneyChange = new EventEmitter<number>();
+  @Output() ccPaymentsMadeChange = new EventEmitter<number>();
+
   change: number = 0;
-  earnedMoney: number = 0;
-  ccPaymentsMade: number = 0;
 
   ngOnInit(): void {
-    console.log(this.count);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -36,17 +40,22 @@ export class CartComponent implements OnInit, OnChanges {
   }
 
   payCash(paymentAmount: string) {
-    console.log(Number(paymentAmount));
-
     const payment = Number(paymentAmount);
 
-    this.change = Math.round((payment - this.selectedCan.price) * 100) /100;
+    this.change = Math.round((payment - this.selectedCan.price) * 100) / 100;
+
     this.selectedCan.stock = this.selectedCan.stock - 1;
-    this.selectedCanChange.emit(this.selectedCan);
-    this.earnedMoney += this.selectedCan.price;
+    
     this.count -= 1;
+    this.earnedMoney += this.selectedCan.price;
+
+    this.updateParent();
 
     console.log(this.change);
+    console.log(this.count);
+    console.log(this.earnedMoney);
+    console.log(this.ccPaymentsMade);
+
     this.modalService.dismissAll();
     alert("Thank you for you purchase. Your change is " + this.change + ". Please get your can. :)");
   }
@@ -54,7 +63,23 @@ export class CartComponent implements OnInit, OnChanges {
   payCard() {
     this.selectedCan.stock = this.selectedCan.stock - 1;
     this.ccPaymentsMade += this.selectedCan.price;
+    this.count -= 1;
+
+    this.updateParent();
+
+    console.log(this.count);
+    console.log(this.earnedMoney);
+    console.log(this.ccPaymentsMade);
+
     this.modalService.dismissAll();
+
     alert("Payment is processed. Thank you for you purchase. Please get your can. :)");
+  }
+
+  updateParent() {
+    this.selectedCanChange.emit(this.selectedCan);
+    this.countChange.emit(this.count);
+    this.earnedMoneyChange.emit(this.earnedMoney);
+    this.ccPaymentsMadeChange.emit(this.ccPaymentsMade);
   }
 }

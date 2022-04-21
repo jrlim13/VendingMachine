@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-tracker',
@@ -14,8 +14,13 @@ export class TrackerComponent implements OnInit {
   @Input() ccPaymentsMade: number = 0;
 
   ngOnInit(): void {
+  }
+
+
+  ngOnChanges(changes: SimpleChanges) {
     console.log(this.count);
     console.log(this.earnedMoney);
+    console.log(this.ccPaymentsMade);
   }
 
 }
