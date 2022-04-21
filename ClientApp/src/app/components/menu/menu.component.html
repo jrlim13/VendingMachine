@@ -1,3 +1,23 @@
+<ng-template #modalRestock let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Input stock amount for {{canToRestock.name}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="amount">Amount</label>
+        <div class="input-group">
+          <input type="number" min="1" id="paymentAmount" class="form-control text-currency" placeholder="1" name="restock" value="amount" #amount required>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="restock(amount.value)">Restock</button>
+  </div>
+</ng-template>
+
 <div class="flex-gap d-flex">
   <div class="container">
     <div class="row justify-content-between g-3 mb-3">
@@ -5,7 +25,10 @@
         <img src="./assets/images/{{can.imgName}}" />
         <p class="fs-5 mt-3" id="can-{{can.id}}-name" title="{{can.name}}">{{can.name}}</p>
         <p>Stock left: {{can.stock}}</p>
-        <button (click)="select(can)" class="btn btn-primary text-uppercase">Select</button>
+        <div class="d-grid gap-2">
+          <button (click)="select(can)" class="btn btn-primary text-uppercase">Select</button>
+          <button (click)="openRestock(can, modalRestock)" class="btn btn-primary text-uppercase">Restock</button>
+        </div>
       </div>
     </div>
   </div>
