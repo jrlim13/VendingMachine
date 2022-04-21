@@ -20,13 +20,13 @@
 
 <div class="flex-gap d-flex">
   <div class="container">
-    <div class="row justify-content-between gap-3 mb-3">
-      <div *ngFor="let can of cans" class="col-auto mx-1 bg-white text-center rounded p-3 shadow-sm align-self-end" style="width:300px;height: 400px;" id="can-{{can.id}}">
+    <div class="row justify-content-between gap-3 mb-3 align-items-end">
+      <div *ngFor="let can of cans" class="col-width col-xl-3 mx-1 bg-white text-center p-2 rounded shadow-sm" id="can-{{can.id}}">
         <div class="d-flex flex-wrap flex-column align-items-center">
           <img src="./assets/images/{{can.imgName}}" />
-          <p class="fs-5 mt-3" id="can-{{can.id}}-name" title="{{can.name}}">{{can.name}}</p>
+          <p class="p-overflow mt-3 overflow-hidden" id="can-{{can.id}}-name" title="{{can.name}}">{{can.name}}</p>
           <p>Stock left: {{can.stock}}</p>
-          <div class="d-flex flex-column w-100 gap-2">
+          <div class="d-flex flex-column w-100 gap-2 mt-auto ">
             <button (click)="select(can)" class="btn btn-primary text-uppercase">Select</button>
             <button (click)="openRestock(can, modalRestock)" class="btn btn-primary text-uppercase">Restock</button>
           </div>
