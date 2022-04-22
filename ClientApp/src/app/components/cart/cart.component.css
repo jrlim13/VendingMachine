@@ -20,3 +20,10 @@ img {
 .text-currency {
   /*padding: 10px 20px;*/
 }
+
+.currency-code {
+  position: absolute;
+  margin-left: 1px;
+  margin-top: 1px;
+  z-index: 2;
+}

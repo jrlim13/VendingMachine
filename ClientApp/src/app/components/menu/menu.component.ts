@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CanService } from '../../can.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-menu',
@@ -8,8 +9,6 @@ import { CanService } from '../../can.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
-  constructor(private canService: CanService, private modalService: NgbModal) { }
 
   cans: any[] = [];
 
@@ -19,6 +18,15 @@ export class MenuComponent implements OnInit {
 
   selectedCan: any;
   canToRestock: any;
+
+  rForm: FormGroup = new FormGroup({
+    rAmount: new FormControl(1, [
+      Validators.required,
+      Validators.min(1)
+    ])
+  });;
+
+  constructor(private canService: CanService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.canService.getAll().subscribe(data => {
@@ -48,6 +56,7 @@ export class MenuComponent implements OnInit {
     console.log(this.earnedMoney);
     console.log(this.ccPaymentsMade);
 
-    this.modalService.dismissAll();
+    if (this.rForm.valid)
+      this.modalService.dismissAll();
   }
 }

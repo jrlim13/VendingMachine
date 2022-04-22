@@ -7,11 +7,11 @@ import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 })
 export class TrackerComponent implements OnInit {
 
-  constructor() { }
-
   @Input() count: number = 0;
   @Input() earnedMoney: number = 0;
   @Input() ccPaymentsMade: number = 0;
+
+  constructor() { }
 
   ngOnInit(): void {
   }

@@ -4,12 +4,14 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <form>
+    <form [formGroup]="pcForm">
       <div class="mb-3">
-        <label for="amount">Payment Amount</label>
+        <label for="amount">Payment Amount (AUD): </label>
         <div class="input-group">
-          <span class="currency-code">A$</span>
-          <input type="number" min="{{selectedCan.price}}" step="0.01" id="paymentAmount" dirname="paymentAmount" class="form-control text-currency" placeholder="{{selectedCan.price}}" name="pa" #paymentAmount required>
+          <input type="number" min="{{selectedCan?.price ?? 0}}" step="0.01" id="paymentAmount" dirname="paymentAmount" class="form-control" value="2.89" placeholder="{{selectedCan?.price ?? 0}}" name="pa" formControlName="paymentAmount" #paymentAmount required>
+        </div>
+        <div class="text-danger" *ngIf="pcForm.get('paymentAmount')?.invalid && (pcForm.get('paymentAmount')?.dirty || pcForm.get('paymentAmount')?.touched)">
+          Minimum value must be equal or greater than A${{selectedCan?.price ?? 0}}
         </div>
       </div>
     </form>
