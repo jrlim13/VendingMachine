@@ -4,13 +4,14 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="pcForm">
+    <form [formGroup]="pCashForm">
       <div class="mb-3">
-        <label for="amount">Payment Amount (AUD): </label>
+        <label for="amount">Payment Amount: </label>
         <div class="input-group">
+          <span class="input-group-text">A$</span>
           <input type="number" min="{{selectedCan?.price ?? 0}}" step="0.01" id="paymentAmount" dirname="paymentAmount" class="form-control" value="2.89" placeholder="{{selectedCan?.price ?? 0}}" name="pa" formControlName="paymentAmount" #paymentAmount required>
         </div>
-        <div class="text-danger" *ngIf="pcForm.get('paymentAmount')?.invalid && (pcForm.get('paymentAmount')?.dirty || pcForm.get('paymentAmount')?.touched)">
+        <div class="text-danger text-end" *ngIf="pCashForm.get('paymentAmount')?.invalid && (pCashForm.get('paymentAmount')?.dirty || pCashForm.get('paymentAmount')?.touched)">
           Minimum value must be equal or greater than A${{selectedCan?.price ?? 0}}
         </div>
       </div>
@@ -23,14 +24,41 @@
 
 <ng-template #contentCard let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Pay By Cash</h4>
+    <h4 class="modal-title" id="modal-basic-title">Pay By Card</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <p>Please tap card.</p>
+    <form [formGroup]="pCardForm">
+      <div class="mb-3">
+        <label for="amount">Card Number: </label>
+        <div class="input-group">
+          <input type="text" id="cardNumber" dirname="cardNumber" class="form-control" name="cn" formControlName="cardNumber" required>
+        </div>
+        <div class="text-danger text-end" *ngIf="pCardForm.get('cardNumber')?.invalid && (pCardForm.get('cardNumber')?.dirty || pCardForm.get('cardNumber')?.touched)">
+          *Required
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="input-group flex-wrap">
+          <label for="amount">MM/YY: </label>
+          <input type="text" id="cardNumber" dirname="expDate" class="form-control rounded input-two" name="ed" formControlName="expDate" required>
+          <label for="amount">CVC: </label>
+          <input type="text" id="cardNumber" dirname="cvc" class="form-control rounded input-two" name="cvc" formControlName="cvc" required>
+          <div class="d-flex break">
+            <div class="flex-fill text-danger text-end" *ngIf="pCardForm.get('expDate')?.invalid && (pCardForm.get('expDate')?.dirty || pCardForm.get('expDate')?.touched)">
+              *Required
+            </div>
+            <div class="flex-fill text-danger text-end" *ngIf="pCardForm.get('cvc')?.invalid && (pCardForm.get('cvc')?.dirty || pCardForm.get('cvc')?.touched)">
+              *Required
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="payCard()">Tap</button>
+    <button type="button" class="btn btn-outline-dark" (click)="payCard()">Pay</button>
   </div>
 </ng-template>
 

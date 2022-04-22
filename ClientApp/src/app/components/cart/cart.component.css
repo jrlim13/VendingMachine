@@ -16,3 +16,12 @@ img {
   margin-top: 1px;
   z-index: 2;
 }
+
+.input-two {
+  margin-left: 10px !important;
+  margin-right: 10px;
+}
+
+.break {
+  flex-basis: 100%;
+}
