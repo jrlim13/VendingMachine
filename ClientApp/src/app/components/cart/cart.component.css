@@ -9,17 +9,6 @@ img {
 .inner-cart-size {
     height: 380px;
 }
-/*.input-group {
-    position: relative;
-}
-
-.currency-code {
-  position: absolute;
-}
-*/
-.text-currency {
-  /*padding: 10px 20px;*/
-}
 
 .currency-code {
   position: absolute;
