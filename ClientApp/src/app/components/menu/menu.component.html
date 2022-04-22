@@ -32,7 +32,7 @@
           <p class="p-overflow fw-bold mt-3" id="can-{{can.id}}-name" title="{{can.name}}">{{can.name}}</p>
           <p>Stock left: {{can.stock}}</p>
           <div class="d-flex flex-column w-100 gap-2">
-            <button (click)="select(can)" class="btn btn-primary text-uppercase">Select</button>
+            <button (click)="select(can)" class="btn btn-primary text-uppercase" [disabled]="can.stock <= 0">Select</button>
             <button (click)="openRestock(can, modalRestock)" class="btn btn-primary text-uppercase">Restock</button>
           </div>
         </div>
